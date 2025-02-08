@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::name('admin.')->group(function(){
     Route::get('admin/login',[LoginController::class, 'login'])->name('login');
     Route::post('admin/do-login',[LoginController::class, 'dologin'])->name('dologin');
-    Route::post('admin/dashboard',[DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('admin/dashboard',[DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('admin/products',[ProductController::class, 'list'])->name('list');
 });
 
 
