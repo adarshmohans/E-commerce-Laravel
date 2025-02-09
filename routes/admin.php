@@ -19,7 +19,12 @@ Route::name('admin.')->group(function(){
     Route::get('admin/login',[LoginController::class, 'login'])->name('login');
     Route::post('admin/do-login',[LoginController::class, 'dologin'])->name('dologin');
     Route::get('admin/dashboard',[DashboardController::class, 'dashboard'])->name('dashboard');
-    Route::get('admin/products',[ProductController::class, 'list'])->name('list');
+
+    Route::name('product.')->prefix('admin/products')->group(function(){
+    Route::get('/',[ProductController::class, 'list'])->name('list');
+    Route::get('create',[ProductController::class, 'create'])->name('create');
+    Route::post('save',[ProductController::class, 'save'])->name('save');
+    });
 });
 
 
