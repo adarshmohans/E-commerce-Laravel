@@ -15,15 +15,17 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::name('admin.')->group(function(){
+Route::name('admin.')->group(function()
+{
     Route::get('admin/login',[LoginController::class, 'login'])->name('login');
     Route::post('admin/do-login',[LoginController::class, 'dologin'])->name('dologin');
     Route::get('admin/dashboard',[DashboardController::class, 'dashboard'])->name('dashboard');
 
-    Route::name('product.')->prefix('admin/products')->group(function(){
-    Route::get('/',[ProductController::class, 'list'])->name('list');
-    Route::get('create',[ProductController::class, 'create'])->name('create');
-    Route::post('save',[ProductController::class, 'save'])->name('save');
+    Route::name('product.')->prefix('admin/products')->controller(ProductController::class)->group(function()
+    {
+    Route::get('/','list')->name('list');
+    Route::get('create', 'create')->name('create');
+    Route::post('save', 'save')->name('save');
     });
 });
 
