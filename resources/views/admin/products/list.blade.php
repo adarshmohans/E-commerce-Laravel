@@ -27,6 +27,7 @@
                     <div class="card">
                         <div class="card-header">
                             <a href="{{ route('admin.product.create') }}" class="btn btn-primary">Add Product</a>
+                            @if(session()->has('message'))<p class="flash message">{{ session()->get('message') }}</p> @endif
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -51,7 +52,7 @@
                                         <td>{{ $product->is_favorite }}</td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                                            <a href="#" class="btn btn-sm btn-danger">Delete</a>
+                                            <a href="{{route('admin.product.delete', encrypt($product->id))}}" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                     @endforeach

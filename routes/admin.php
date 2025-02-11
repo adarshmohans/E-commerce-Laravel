@@ -26,6 +26,7 @@ Route::name('admin.')->group(function()
     Route::get('/','list')->name('list');
     Route::get('create', 'create')->name('create');
     Route::post('save', 'save')->name('save');
+    Route::get('delete/{id}', 'delete')->name('delete');
     });
 });
 

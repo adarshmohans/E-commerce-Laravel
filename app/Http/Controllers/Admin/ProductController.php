@@ -24,4 +24,10 @@ class ProductController
         Product::create($input);
         return redirect()->route('admin.product.list')->with('message', 'Product saved successfully');
     }
+
+    public function delete($id){
+        $product=Product::find(decrypt($id));
+        $product->delete();
+        return redirect()->route('admin.product.list')->with('message', 'Product deleted successfully');
+    }
 }
