@@ -7,7 +7,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Products</h1>
+                    <h1>Products ({{ $products->total()}})</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -42,22 +42,26 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach ($products as $product )
                                     <tr>
-                                        <td>1.</td>
-                                        <td>Jean</td>
-                                        <td>350$</td>
-                                        <td>Active</td>
-                                        <td>Yes</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ number_format($product->price, 2) }}</td>
+                                        <td>{{ $product->status }}</td>
+                                        <td>{{ $product->is_favorite }}</td>
                                         <td>
                                             <a href="#" class="btn btn-sm btn-primary">Edit</a>
                                             <a href="#" class="btn btn-sm btn-danger">Delete</a>
                                         </td>
                                     </tr>
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
+                            {{ $products->links() }}
                         </div>
                     </div>
                     <!-- /.card -->
