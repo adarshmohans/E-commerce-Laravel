@@ -30,10 +30,30 @@ class ProductController
             $extension = $request->image->extension();
             $filename = str::random(6)."_".time()."_product.".$extension;
             $request->image->storeAs('images', $filename);
+            $input['image'] = $filename;
         }
-        $input['image'] = $filename;
         Product::create($input);
         return redirect()->route('admin.product.list')->with('message', 'Product saved successfully');
+    }
+
+    public function edit($id){
+        $product = Product::find(decrypt($id));
+        $categories = Category::all();
+        return view('admin.products.edit', compact('product', 'categories'));
+    }
+
+    public function update(ProductSaveRequest $request){
+        $input = $request->validated();
+        $product = Product::find(decrypt($request->product_id));
+        if($request->hasFile('image')){
+            Storage::delete('storage/images/'.$product->image);
+            $extension = $request->image->extension();
+            $filename = str::random(6)."_".time()."_product.".$extension;
+            $request->image->storeAs('images', $filename);
+            $input['image'] = $filename;
+        }
+        $product->update($input);
+        return redirect()->route('admin.product.list')->with('message', 'Product updated successfully');
     }
 
     public function delete($id){
