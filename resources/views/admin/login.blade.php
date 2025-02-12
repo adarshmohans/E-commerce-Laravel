@@ -31,7 +31,7 @@
                         <!-- 2 column grid layout for inline styling -->
                         <div class="row mb-3">
                             <div class="col d-flex align-items-center">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example31" checked />
+                                <input class="form-check-input" name="remember_me" type="checkbox" value="1" />
                                 <label class="form-check-label" for="form2Example31"> Remember me </label>
                             </div>
                             <div class="col text-end">
